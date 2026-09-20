@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Housewarming Invitation</title>
+<meta name="description" content="You are cordially invited — warming our new home" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Amiri:ital@0;1&family=Jost:wght@300;400;500&family=Noto+Sans+Malayalam:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <!-- ============ INTRO OVERLAY ============ -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-content">
+      <svg class="intro-motif" viewBox="0 0 100 100" fill="none" stroke="#c9a24b" stroke-width="1.4">
+        <!-- key + doorway motif for "new home" -->
+        <path d="M15 92 L15 55 C15 32 30 18 50 18 C70 18 85 32 85 55 L85 92" />
+        <circle cx="50" cy="48" r="9" opacity="0.7" />
+        <path d="M50 57 L50 78" opacity="0.7" />
+        <path d="M50 66 L58 66" opacity="0.7" />
+        <path d="M50 72 L56 72" opacity="0.7" />
+      </svg>
+      <div class="intro-house" id="intro-house">&nbsp;</div>
+      <div class="intro-sub">invite you to bless their new home</div>
+      <button class="intro-btn" id="introOpenBtn">Open Invitation</button>
+    </div>
+  </div>
+
+  <canvas class="warmth-canvas" id="warmthCanvas"></canvas>
+  <audio id="bgAudio" loop preload="none"></audio>
+  <button class="music-toggle" id="musicToggle" aria-label="Toggle background music">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  </button>
+<!--  <button class="lang-toggle" id="langToggle" aria-label="Switch language">-->
+<!--    <span class="lang-current">EN</span>-->
+<!--    <span class="lang-separator">/</span>-->
+<!--    <span class="lang-other">ML</span>-->
+<!--  </button>-->
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-inner">
+      <div class="hero-bismillah" id="bismillah-arabic"></div>
+      <div class="hero-translit" id="bismillah-translit"></div>
+      <div class="hero-translation" id="bismillah-translation"></div>
+
+      <div class="arch-frame">
+        <svg class="arch-svg" viewBox="0 0 300 340" preserveAspectRatio="none">
+          <path d="M 20 340 L 20 190 C 20 100 75 30 150 30 C 225 30 280 100 280 190 L 280 340" />
+        </svg>
+        <div class="hero-house">
+          <div class="hero-eyebrow" id="hero-invited-line" data-en="You Are Cordially Invited" data-ml="നിങ്ങളെ സ്നേഹപൂർവം ക്ഷണിക്കുന്നു">You Are Cordially Invited</div>
+          <div class="hero-tagline" id="hero-tagline" data-en="" data-ml=""></div>
+          <div class="house-name" id="house-name" data-en="" data-ml=""></div>
+        </div>
+      </div>
+
+      <p class="hero-subtitle" id="hero-owners-line" data-en="" data-ml=""></p>
+      <p class="hero-memory" id="hero-memory-note" data-en="" data-ml=""></p>
+      <div class="hero-date" id="hero-date" data-en="" data-ml=""></div>
+      <div class="hero-hijri" id="hero-hijri" data-en="" data-ml=""></div>
+      <div class="hero-time" id="hero-time" data-en="" data-ml=""></div>
+
+      <div class="countdown" id="countdown">
+        <div class="countdown-unit"><div class="countdown-num" id="cd-days">00</div><div class="countdown-label">Days</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-label">Hours</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-mins">00</div><div class="countdown-label">Mins</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-label">Secs</div></div>
+      </div>
+    </div>
+  </section>
+  <div class="kasavu-border"></div>
+
+  <!-- ============ BLESSING ============ -->
+  <section class="section reveal">
+    <div class="section-inner blessing">
+      <div class="blessing-arabic" id="blessing-arabic"></div>
+      <div class="blessing-translit" id="blessing-translit"></div>
+      <div class="blessing-meaning" id="blessing-meaning" data-en="" data-ml=""></div>
+    </div>
+  </section>
+
+  <div class="star-divider">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a24b" stroke-width="1.2">
+      <path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z" />
+    </svg>
+    <span class="line"></span>
+  </div>
+
+  <!-- ============ FAMILY ============ -->
+  <section class="section reveal">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="eyebrow" data-en="With Love &amp; Gratitude" data-ml="സ്നേഹത്തോടെയും കൃതജ്ഞതയോടെയും">With Love &amp; Gratitude</span>
+        <h2 data-en="The Family" data-ml="കുടുംബം">The Family</h2>
+      </div>
+      <div class="families">
+        <div class="family-card">
+          <div class="scallop"></div>
+          <div class="tag" data-en="Dream Home Of" data-ml="സ്വപ്നവീടിന്റെ ഉടമകൾ">Dream Home Of</div>
+          <div class="name" id="fam-owners-name" data-en="" data-ml=""></div>
+          <div class="house" id="fam-memory-note" data-en="" data-ml=""></div>
+        </div>
+        <div class="family-card">
+          <div class="scallop"></div>
+          <div class="tag" id="fam-children-tag" data-en="Happy Children" data-ml="സന്തോഷമുള്ള കുട്ടികൾ">Happy Children</div>
+          <div class="name" id="fam-children-names" data-en="" data-ml=""></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EVENTS ============ -->
+  <section class="section reveal" style="background:var(--ivory);">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="eyebrow" data-en="Save The Date" data-ml="ദിനം ഓർക്കുക">Save The Date</span>
+        <h2 data-en="Celebrations" data-ml="ആഘോഷങ്ങൾ">Celebrations</h2>
+      </div>
+      <div class="events" id="events-list"></div>
+    </div>
+  </section>
+
+  <!-- ============ VENUE ============ -->
+  <section class="section venue-section reveal">
+    <div class="section-inner venue-box">
+      <span class="eyebrow" data-en="Getting There" data-ml="എങ്ങോട്ടെത്താം">Getting There</span>
+      <h3 id="venue-name" data-en="" data-ml=""></h3>
+      <div class="addr" id="venue-address" data-en="" data-ml=""></div>
+      <div class="map-embed">
+        <iframe id="venue-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="directions-buttons">
+        <a href="#" class="btn" id="venue-directions" target="_blank" rel="noopener" data-en="Get Directions" data-ml="വഴി കാണുക">Get Directions</a>
+        <div class=additional-directions-buttons id="additional-directions"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+<!--  <section class="section reveal">-->
+<!--    <div class="section-inner">-->
+<!--      <div class="section-head">-->
+<!--        <span class="eyebrow" data-en="A Peek Inside" data-ml="ഒന്നു നോക്കുക">A Peek Inside</span>-->
+<!--        <h2 data-en="Our Home" data-ml="ഞങ്ങളുടെ വീട്">Our Home</h2>-->
+<!--      </div>-->
+<!--      <div class="gallery" id="gallery-grid"></div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&times;</button>
+    <img src="" alt="" id="lightbox-img" />
+  </div>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact-section reveal" id="contact-section">
+    <div class="section-inner contact-box">
+      <span class="eyebrow" data-en="Join Us" data-ml="ഞങ്ങളോടൊപ്പം ചേരുക">Join Us</span>
+      <div class="section-head" style="margin-bottom:0;">
+        <h2 data-en="For Enquiries" data-ml="അന്വേഷണങ്ങൾക്ക്">For Enquiries</h2>
+      </div>
+      <p style="opacity:.75; font-size:.9rem; margin-top:14px;" data-en="Your presence would bring us joy on this special day." data-ml="ഈ പ്രത്യേക ദിവസം നിങ്ങളുടെ സാന്നിധ്യം ഞങ്ങൾക്ക് സന്തോഷം നൽകും.">Your presence would bring us joy on this special day.</p>
+      <div class="contact-actions">
+        <a href="#" class="btn solid" id="contact-call" data-en="Call Us" data-ml="വിളിക്കുക">Call Us</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="kasavu-border on-dark"></div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="name-line" id="footer-house-name"></div>
+    <div class="note" id="footer-compliments"></div>
+    <div class="note" id="footer-note"></div>
+    <div class="note" id="footer-hostedby"></div>
+<!--    <div class="made">Made with love in Kerala</div>-->
+  </footer>
+
+  <script src="./config.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
